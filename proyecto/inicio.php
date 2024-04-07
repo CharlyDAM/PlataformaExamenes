@@ -36,16 +36,22 @@
             background-color: #0056b3;
         }
     </style>
+    <a href="cerrar_sesion.php">Cerrar sesión</a>
+    
     
 </head>
 
 <body>
     <h1>Bienvenido a la aplicación</h1>
-   
+ 
     <div class="botones">
-        <a href="categorias.php" class="boton">Categorías</a>
-        <a href="dificultades.php" class="boton">Dificultades</a>
-        <a href="preguntas.php" class="boton">Preguntas</a>
+    <a href="categorias.php" class="boton">Categorías</a>
+    <a href="dificultades.php" class="boton">Dificultades</a>
+    <a href="tipospreguntas.php" class="boton">TiposDePreguntas</a>
+    <a href="preguntas.php" class="boton">Preguntas</a>
     </div>
+
+  
+ 
 </body>
 </html>
