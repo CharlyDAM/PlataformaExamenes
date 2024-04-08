@@ -32,14 +32,19 @@ if ($resultado->num_rows > 0) {
     
     // Guardar el tipo de permiso en una variable de sesión
     $_SESSION["tipo_permiso"] = $fila["tipo_permiso"];
-    
+        if($fila["tipo_permiso"]==="Administrador"){
     // Redirigir a la página de inicio
     header("Location: inicio.php");
     exit(); // Es importante terminar el script después de redirigir
-} else {
+} else if (($fila["tipo_permiso"]==="Docente")) {
+    header("Location: inicio2.php");
+} 
+}else {
     // Credenciales incorrectas, mostrar mensaje de error
     echo "Nombre de usuario o contraseña incorrectos.";
 }
+    
+
 
 // Cerrar la conexión a la base de datos
 $conexion->close();
