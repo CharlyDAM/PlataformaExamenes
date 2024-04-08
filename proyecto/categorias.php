@@ -13,7 +13,11 @@ if ($conn->connect_error) {
 }
 
 // Obtener todas las categorías
-$sql = "SELECT * FROM categorias";
+$sql = "SELECT categorias.id AS ID, categorias.nombre AS categoria, subcategoria.id AS SubID, subcategoria.nombre AS subcategoria
+        FROM categorias
+        INNER JOIN subcategoria ON categorias.id = subcategoria.categoria_id
+        ORDER BY categorias.id, subcategoria.id";
+
 $result = $conn->query($sql);
 ?>
 
@@ -22,6 +26,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Categorías</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         body {
     font-family: Arial, sans-serif;
@@ -34,13 +39,13 @@ $result = $conn->query($sql);
     background-color: #f0f0f0;
 }
         
-        .botones {
+        button {
           
             justify-content: center;
             margin-top: 20px;
         }
         
-        .boton {
+        button {
             padding: 10px 20px;
             margin: 0 10px;
             background-color: #007bff;
@@ -49,69 +54,81 @@ $result = $conn->query($sql);
             border-radius: 5px;
         }
         
-        .boton:hover {
+        button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Gestión de Categorías</h1>
     
-
-    <!-- Menú desplegable con las categorías existentes -->
-    <form action="accion_categoria.php" method="post">
-        <select name="categoria_id">
-            <?php while ($row = $result->fetch_assoc()) { ?>
-                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?><?php echo $row['categoria_padre_id']; ?></option>
-            <?php } ?>
-        </select>
-
-        <div class="botones">
-    <a <!-- Botón para abrir el formulario de creación de categoría -->
-    <button id="btnCrearCategoria">Crear Categoría</button>
-
-    <!-- Script para abrir la ventana/modal al hacer clic en el botón -->
-    <script>
-    document.getElementById("btnCrearCategoria").addEventListener("click", function() {
-    // Abre una nueva ventana o modal
-    window.open("crear_categoria.php", "_blank", "width=400,height=400");
-    });
-    </script>
-
-    <a href="borrarcategoria.php" class="boton">Borrar</a>
-    <a href="editarcategoria.php" class="boton">Editar</a>
-   
-    </div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Categoría</th>
+            <th>Id</th>
+            <th>Subcategoría</th>
+        </tr>
+        <?php
+            $previous_id = null; // Variable para almacenar el ID de la fila anterior
+            if ($result->num_rows > 0) {
+            // Mostrar datos de cada fila
+            while($row = $result->fetch_assoc()) {
+            // Verificar si el ID es diferente al de la fila anterior
+            if ($row["ID"] != $previous_id) {
+            // Si el ID es diferente, mostrar la fila con el nuevo ID
+            echo "<tr>";
+            echo "<td>" . $row["ID"] . "</td>";
+            echo "<td>" . $row["categoria"] . "</td>";
+            } else {
+            // Si el ID es el mismo que el de la fila anterior, solo mostrar las columnas de subcategoría
+            echo "<td></td><td></td>"; // Columnas vacías para compensar el colspan
+        }
         
-    </form>
+        // Mostrar las columnas de subcategoría
+        echo "<td>" . $row["SubID"] . "</td>";
+        echo "<td>" . $row["subcategoria"] . "</td>";
+        echo "</tr>";
 
-    <?php
-    // Cerrar la conexión a la base de datos
-    $conn->close();
-    ?>
+        // Actualizar el ID de la fila anterior con el ID de la fila actual
+        $previous_id = $row["ID"];
+    }
+} else {
+    echo "<tr><td colspan='4'>No se encontraron resultados</td></tr>";
+}
+?>
+        <h2>Administración de Categorías y Subcategorías</h2>
+    
+    <!-- Botones para crear y eliminar categorías -->
+    <button onclick="crearCategoria()">Crear Categoría</button>
+    <button onclick="alert('Eliminar categoría')">Eliminar Categoría</button>
+
+   
+
+    <!-- Botones para crear y eliminar subcategorías -->
+    <button onclick="alert('Crear nueva subcategoría')">Crear Subcategoría</button>
+    <button onclick="alert('Eliminar subcategoría')">Eliminar Subcategoría</button>
+    <br><br>
+    </table>
+    <script>
+        // Función para abrir una ventana emergente y crear una nueva categoría
+        function crearCategoria() {
+            var nombre = prompt("Ingrese el nombre de la nueva categoría:");
+
+            // Verificar si se ingresó un nombre
+            if (nombre != null && nombre != "") {
+                // Realizar una solicitud AJAX para insertar la nueva categoría en la base de datos
+                $.ajax({
+                    url: 'insertar_categoria.php',
+                    type: 'POST',
+                    data: {nombre: nombre},
+                    success: function(response) {
+                        // Recargar la página para actualizar la lista de categorías
+                        location.reload();
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
 
-<?php
-// Verificar si se ha enviado una acción y el usuario es administrador
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $es_administrador) {
-    $accion = $_POST["accion"];
-    $categoria_id = $_POST["categoria_id"];
-
-    // Procesar la acción seleccionada
-    switch ($accion) {
-        case "editar":
-            // Redirigir a la página de edición con el ID de la categoría seleccionada
-            header("Location: editar_categoria.php?categoria_id=$categoria_id");
-            exit();
-        case "borrar":
-            // Realizar la eliminación de la categoría seleccionada
-            // (debes implementar la lógica para la eliminación)
-            break;
-        case "crear":
-            // Redirigir a la página de creación de categorías
-            header("Location: crear_categoria.php");
-            exit();
-    }
-}
-?>
