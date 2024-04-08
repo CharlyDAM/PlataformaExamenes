@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    
     <style>
         body {
     font-family: Arial, sans-serif;
@@ -17,13 +16,10 @@
     background-color: #f0f0f0;
 }
         
-        .botones {
+    .boton {
           
             justify-content: center;
             margin-top: 20px;
-        }
-        
-        .boton {
             padding: 10px 20px;
             margin: 0 10px;
             background-color: #007bff;
@@ -36,9 +32,6 @@
             background-color: #0056b3;
         }
     </style>
-    <a href="cerrar_sesion.php">Cerrar sesión</a>
-    
-    
 </head>
 
 <body>
@@ -54,4 +47,10 @@
   
  
 </body>
+<br><br><br>
+<footer>
+<div class="botones">
+<a href="cerrar_sesion.php" class="boton">Cerrar sesión</a>
+</div>
+</footer>
 </html>

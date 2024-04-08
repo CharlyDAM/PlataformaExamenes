@@ -36,7 +36,7 @@
             background-color: #0056b3;
         }
     </style>
-    <a href="cerrar_sesion.php">Cerrar sesión</a>
+    
     
     
 </head>
@@ -51,4 +51,10 @@
   
  
 </body>
+<br><br><br>
+<footer>
+<div class="botones">
+<a href="cerrar_sesion.php" class="boton">Cerrar sesión</a>
+</div>
+</footer>
 </html>
