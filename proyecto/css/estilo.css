@@ -7,6 +7,10 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    background-image: url('png-transparent-cardigan-mountain-school-student-college-national-secondary-school-core-values-emblem-logo-united-states.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
 }
 
 .login-container {

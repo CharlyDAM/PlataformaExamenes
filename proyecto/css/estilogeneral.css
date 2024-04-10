@@ -6,8 +6,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    
+    
 }
+
         
         button {
           
@@ -26,4 +28,19 @@ body {
         }
         .form-group {
     margin-bottom: 15px;
+}
+.boton {
+          
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.boton:hover {
+    background-color: #0056b3;
 }

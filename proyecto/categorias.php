@@ -27,39 +27,8 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Categorías</title>
-    
+    <link rel="stylesheet" href="css\estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 12%;
-    padding: 12%;
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-        
-        button {
-          
-            justify-content: center;
-            margin-top: 20px;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        
-        button:hover {
-            background-color: #0056b3;
-        }
-        .form-group {
-    margin-bottom: 15px;
-}
-    </style>
     <h2>Administración de Categorías y Subcategorías</h2>
 </head>
 <body>
