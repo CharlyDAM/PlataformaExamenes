@@ -36,6 +36,7 @@ $result = $conn->query($sql);
         <tr>
             <th>Id</th>
             <th>Dificultad</th>
+            <th>Editar</th>
             
         </tr>
         <?php
@@ -49,6 +50,8 @@ $result = $conn->query($sql);
             echo "<tr>";
             echo "<td>" . $row["ID"] . "</td>";
             echo "<td>" . $row["dificultad"] . "</td>";
+            echo "<td><a href='editar_dificultad.php?id=" . $row["ID"] . "'>Editar</a></td>";
+            echo "</tr>";
             } else {
             // Si el ID es el mismo que el de la fila anterior, solo mostrar las columnas de subcategoría
             echo "<td></td><td></td>"; // Columnas vacías para compensar el colspan

@@ -13,9 +13,10 @@ if ($conn->connect_error) {
 }
 
 // Obtener todas las categorías
-$sql = "SELECT categorias.id AS ID, categorias.nombre AS categoria
+$sql = "SELECT categorias.id AS ID, categorias.nombre AS categoria, subcategorias.id AS SubID, subcategorias.nombre AS subcategoria
         FROM categorias
-        ORDER BY categorias.id";
+        INNER JOIN subcategorias ON categorias.id = subcategorias.categoria_id
+        ORDER BY categorias.id, subcategorias.id";
 
 $result = $conn->query($sql);
 ?>
@@ -28,7 +29,7 @@ $result = $conn->query($sql);
     <title>Gestión de Categorías</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <h2>Administración de Categorías</h2>
+    <h2>Administración de Categorías y Subcategorías</h2>
 </head>
 <body>
 <div class="form-group">    
@@ -36,8 +37,7 @@ $result = $conn->query($sql);
         <tr>
             <th>Id</th>
             <th>Categoría</th>
-            <th>Subcategoría</th>
-            <th>Editar</th>
+            <th>Opciones</th>
             
         </tr>
         <?php
@@ -51,7 +51,6 @@ $result = $conn->query($sql);
             echo "<tr>";
             echo "<td>" . $row["ID"] . "</td>";
             echo "<td>" . $row["categoria"] . "</td>";
-            echo "<td><a href='subcategorias.php?id=" . $row["ID"] . "'>Entrar</a></td>";
             echo "<td><a href='editar_categoria.php?id=" . $row["ID"] . "'>Editar</a></td>";
             echo "</tr>";
             } else {
@@ -60,6 +59,9 @@ $result = $conn->query($sql);
         }
         
         
+       
+        
+
         // Actualizar el ID de la fila anterior con el ID de la fila actual
         $previous_id = $row["ID"];
     }
@@ -74,6 +76,12 @@ $result = $conn->query($sql);
     <button onclick="crearCategoria()">Crear Categoría</button>
     <button onclick="eliminarCategoria()">Eliminar Categoría</button>
 
+   
+
+    <!-- Botones para crear y eliminar subcategorías -->
+    <button onclick="crearSubcategoria()">Crear Subcategoría</button>
+    <button onclick="eliminarSubcategoria()">Eliminar Subcategoría</button>
+    <br><br>
     
     <script>
         // Función para abrir una ventana emergente y crear una nueva categoría
@@ -95,7 +103,29 @@ $result = $conn->query($sql);
             }
         }
     </script>
-    
+    <script>
+        // Función para abrir una ventana emergente y crear una nueva subcategoría
+        function crearSubcategoria() {
+            var nombre = prompt("Ingrese el nombre de la nueva subcategoría:");
+            var categoria = prompt("Ingrese el id de la categoría:");
+
+            // Verificar si se ingresó un nombre
+            if (nombre != null && nombre != "") {
+                // Realizar una solicitud AJAX para insertar la nueva categoría en la base de datos
+                $.ajax({
+                    url: 'insertar_subcategoria.php',
+                    type: 'POST',
+                    data: {nombre: nombre,
+                           categoria: categoria 
+                        },
+                    success: function(response) {
+                        // Recargar la página para actualizar la lista de categorías
+                        location.reload();
+                    }
+                });
+            }
+        }
+    </script>
     <script>
         // Función para abrir una ventana emergente y eliminar una categoría
         function eliminarCategoria() {
@@ -121,7 +151,31 @@ $result = $conn->query($sql);
             }
         }
     </script>
-    
+    <script>
+        // Función para abrir una ventana emergente y eliminar una categoría
+        function eliminarSubcategoria() {
+            var id = prompt("Ingrese el ID de la subcategoría a eliminar:");
+
+            // Verificar si se ingresó un ID
+            if (id != null && id != "") {
+                // Realizar una solicitud AJAX para eliminar la categoría de la base de datos
+                $.ajax({
+                    url: 'eliminar_subcategoria.php',
+                    type: 'POST',
+                    data: {id: id},
+                    success: function(response) {
+                        // Recargar la página para actualizar la lista de categorías
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        // Manejar errores
+                        console.error(error);
+                        alert("Ocurrió un error al eliminar la categoría.");
+                    }
+                });
+            }
+        }
+    </script>
     <br><br><br>
 </div>
 </body>

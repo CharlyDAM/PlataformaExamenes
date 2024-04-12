@@ -13,9 +13,9 @@ if ($conn->connect_error) {
 }
 
 // Obtener todas las categorías
-$sql = "SELECT categorias.id AS ID, categorias.nombre AS categoria
-        FROM categorias
-        ORDER BY categorias.id";
+$sql = "SELECT subcategorias.id AS ID, subcategorias.nombre AS subcategoria
+        FROM subcategorias
+        ORDER BY subcategorias.id";
 
 $result = $conn->query($sql);
 ?>
@@ -28,15 +28,14 @@ $result = $conn->query($sql);
     <title>Gestión de Categorías</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <h2>Administración de Categorías</h2>
+    <h2>Administración de Subcategorías</h2>
 </head>
 <body>
 <div class="form-group">    
     <table border="1">
         <tr>
             <th>Id</th>
-            <th>Categoría</th>
-            <th>Subcategoría</th>
+            <th>Subcategoria</th>
             <th>Editar</th>
             
         </tr>
@@ -50,9 +49,8 @@ $result = $conn->query($sql);
             // Si el ID es diferente, mostrar la fila con el nuevo ID
             echo "<tr>";
             echo "<td>" . $row["ID"] . "</td>";
-            echo "<td>" . $row["categoria"] . "</td>";
-            echo "<td><a href='subcategorias.php?id=" . $row["ID"] . "'>Entrar</a></td>";
-            echo "<td><a href='editar_categoria.php?id=" . $row["ID"] . "'>Editar</a></td>";
+            echo "<td>" . $row["subcategoria"] . "</td>";
+            echo "<td><a href='editar_subcategoria.php?id=" . $row["ID"] . "'>Editar</a></td>";
             echo "</tr>";
             } else {
             // Si el ID es el mismo que el de la fila anterior, solo mostrar las columnas de subcategoría
@@ -71,22 +69,25 @@ $result = $conn->query($sql);
 <br><br><br>        
     
     <!-- Botones para crear y eliminar categorías -->
-    <button onclick="crearCategoria()">Crear Categoría</button>
-    <button onclick="eliminarCategoria()">Eliminar Categoría</button>
+    <button onclick="crearSubcategoria()">Crear Subcategoría</button>
+    <button onclick="eliminarSubcategoria()">Eliminar Subcategoría</button>
 
     
     <script>
-        // Función para abrir una ventana emergente y crear una nueva categoría
-        function crearCategoria() {
-            var nombre = prompt("Ingrese el nombre de la nueva categoría:");
+        // Función para abrir una ventana emergente y crear una nueva subcategoría
+        function crearSubcategoria() {
+            var nombre = prompt("Ingrese el nombre de la nueva subcategoría:");
+            var categoria = prompt("Ingrese el id de la categoría:");
 
             // Verificar si se ingresó un nombre
             if (nombre != null && nombre != "") {
                 // Realizar una solicitud AJAX para insertar la nueva categoría en la base de datos
                 $.ajax({
-                    url: 'insertar_categoria.php',
+                    url: 'insertar_subcategoria.php',
                     type: 'POST',
-                    data: {nombre: nombre},
+                    data: {nombre: nombre,
+                           categoria: categoria 
+                        },
                     success: function(response) {
                         // Recargar la página para actualizar la lista de categorías
                         location.reload();
@@ -98,14 +99,14 @@ $result = $conn->query($sql);
     
     <script>
         // Función para abrir una ventana emergente y eliminar una categoría
-        function eliminarCategoria() {
+        function eliminarSubcategoria() {
             var id = prompt("Ingrese el ID de la categoría a eliminar:");
 
             // Verificar si se ingresó un ID
             if (id != null && id != "") {
                 // Realizar una solicitud AJAX para eliminar la categoría de la base de datos
                 $.ajax({
-                    url: 'eliminar_categoria.php',
+                    url: 'eliminar_subcategoria.php',
                     type: 'POST',
                     data: {id: id},
                     success: function(response) {
@@ -126,7 +127,7 @@ $result = $conn->query($sql);
 </div>
 </body>
 <footer>
-<a href="inicio.php"><button>Ir a Inicio</button></a>
+<a href="categorias.php"><button>Ir a Categorias</button></a>
 </footer>
 </html>
 
