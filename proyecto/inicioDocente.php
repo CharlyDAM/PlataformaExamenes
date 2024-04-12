@@ -45,7 +45,7 @@
     <h1>Bienvenido a la aplicación</h1>
  
     <div class="botones">
-    <a href="preguntas.php" class="boton">Preguntas</a>
+    <a href="preguntasdocente.php" class="boton">Preguntas</a>
     </div>
 
   

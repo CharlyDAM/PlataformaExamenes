@@ -37,7 +37,7 @@ if ($resultado->num_rows > 0) {
     header("Location: inicio.php");
     exit(); // Es importante terminar el script después de redirigir
 } else if (($fila["tipo_permiso"]==="Docente")) {
-    header("Location: inicio2.php");
+    header("Location: inicioDocente.php");
 } 
 }else {
     // Credenciales incorrectas, mostrar mensaje de error
