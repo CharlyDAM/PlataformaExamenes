@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn->query($sql) === TRUE) {
             // Redireccionar a la página preguntas.php
-            header("Location: preguntasDocente.php");
+            header("Location: preguntasdocente.php");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;

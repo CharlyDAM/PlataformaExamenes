@@ -25,12 +25,14 @@ CREATE TABLE TiposPreguntas (
 CREATE TABLE Preguntas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     categoria_id INT,
+    subcategoria_id INT,
     dificultad_id INT,
     tipo_pregunta_id INT,
     pregunta TEXT NOT NULL,
     descripcion TEXT,
     pistas TEXT,
     FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE CASCADE,
+	FOREIGN KEY (subcategoria_id) REFERENCES subcategorias(id) ON DELETE CASCADE,
     FOREIGN KEY (dificultad_id) REFERENCES Dificultades(id) ON DELETE CASCADE,
     FOREIGN KEY (tipo_pregunta_id) REFERENCES TiposPreguntas(id) ON DELETE CASCADE
 );

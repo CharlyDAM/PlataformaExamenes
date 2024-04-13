@@ -32,18 +32,26 @@ if(isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Dificultades</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
-    <h2>Editar Dificultades</h2>
+    
 </head>
 <body>
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>CJCAGPEX</h1>
+    </header>
+    <h2>Editar Dificultades</h2>
+    <main class="area-trabajo"> 
     
     <form action="editar_dificultad.php" method="POST">
         <input type="hidden" name="categoria_id" value="<?php echo $categoria['id']; ?>">
         <label>Nombre:</label>
-        <input type="text" name="nombre" value="<?php echo $categoria['nombre']; ?>"><br>
-        <input type="submit" name="submit" value="Modificar">
+        <input type="text" name="nombre" value="<?php echo $categoria['nombre']; ?>"><br><br>
+        <input type="submit" name="submit" class="boton" value="Modificar">
     </form>
     <br><br><br>
     <a href="dificultades.php" class="boton">Volver</a>
+    </main>
+    </div>
 </body>
 </html>
 <?php

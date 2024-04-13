@@ -6,24 +6,30 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
 </head>
-
 <body>
-    <h1>Bienvenido a la aplicación</h1>
- 
-    <div class="botones">
-    <a href="categorias.php" class="boton">Categorías</a>
-    <a href="dificultades.php" class="boton">Dificultades</a>
-    <a href="tipospreguntas.php" class="boton">TiposDePreguntas</a>
-    <a href="preguntas.php" class="boton">Preguntas</a>
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>CJCAGPEX</h1>
+    </header>
+    <main class="area-trabajo">
+    <div class="form-group">
+        <div class="botones">
+            <a href="categorias.php" class="boton">Categorías</a>
+            <a href="dificultades.php" class="boton">Dificultades</a>
+            <a href="tipospreguntas.php" class="boton">TiposDePreguntas</a>
+            <a href="preguntas.php" class="boton">Preguntas</a>
+        </div>    
     </div>
 
-  
- 
+ </main> 
+</div> 
+
 </body>
-<br><br><br>
+<br>
+
 <footer>
 <div class="botones">
-<a href="cerrar_sesion.php" class="boton">Cerrar sesión</a>
+<a href="cerrar_sesion.php" class="pie">Cerrar sesión</a>
 </div>
 </footer>
 </html>

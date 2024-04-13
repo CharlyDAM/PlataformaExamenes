@@ -28,11 +28,17 @@ $result = $conn->query($sql);
     <title>Gestión de Categorías</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <h2>Administración de Categorías</h2>
+    
 </head>
 <body>
-<div class="form-group">    
-    <table border="1">
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>CJC.A.G.P.EX</h1>
+    </header>
+    <h2>Administración de Categorías</h2>
+    <main class="area-trabajo">    
+    <div class="form-group">    
+        <table border="1">
         <tr>
             <th>Id</th>
             <th>Categoría</th>
@@ -71,8 +77,8 @@ $result = $conn->query($sql);
 <br><br><br>        
     
     <!-- Botones para crear y eliminar categorías -->
-    <button onclick="crearCategoria()">Crear Categoría</button>
-    <button onclick="eliminarCategoria()">Eliminar Categoría</button>
+    <button onclick="crearCategoria()" class="boton">Crear Categoría</button>
+    <button onclick="eliminarCategoria()" class="boton">Eliminar Categoría</button>
 
     
     <script>
@@ -124,9 +130,11 @@ $result = $conn->query($sql);
     
     <br><br><br>
 </div>
+</main> 
+</div>
 </body>
 <footer>
-<a href="inicio.php"><button>Ir a Inicio</button></a>
+<a href="inicio.php" class="pie">Ir a Inicio</a>
 </footer>
 </html>
 

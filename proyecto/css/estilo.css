@@ -1,24 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+.contenedor {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid #3498db; /* Color azul similar al de los botones */
+    border-radius: 10px;
+}
+.cabecera {
     align-items: center;
-    height: 100vh;
-   
+    background-color: #3498db; /* Color azul similar al de los botones */
+    color: white;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
-
-.login-container {
-    background-color: #fff;
-    padding: 2000px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.area-trabajo {
+    padding: 20px;
 }
-
 .form-group {
-    margin-bottom: 15px;
+    align-items: center;
+}
+.botones {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botones:hover {
+    background-color: #0056b3;
 }
 
 label {

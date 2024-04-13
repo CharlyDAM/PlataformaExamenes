@@ -56,26 +56,15 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
     <title>Listado de Preguntas</title>
     <link rel="stylesheet" href="css/estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    
 </head>
 <body>
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>CJC.A.G.P.EX</h1>
+    </header>
     <h2>Listado de Preguntas</h2>
-
+    <main class="area-trabajo"> 
     <form method="post">
         <label for="categoria">Filtrar por Categoría:</label>
         <select id="categoria" name="categoria_id">
@@ -88,11 +77,12 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
             }
             ?>
         </select>
-        <button type="submit" name="filtrar_categoria">Filtrar</button>
-        <button type="submit" name="anular_filtro">Anular Filtro</button>
+        <button type="submit" name="filtrar_categoria" class="boton">Filtrar</button>
+        <button type="submit" name="anular_filtro" class="boton">Anular Filtro</button>
     </form>
-    <br><br><br>
-    <table>
+    <br><br>
+    <table class="tabla-preguntas">
+    <thead>
         <tr>
             <th>ID Pregunta</th>
             <th>Categoría</th>
@@ -103,6 +93,8 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
             <th>Descripción</th>
             <th>Pistas</th>
         </tr>
+    </thead>
+    <tbody>
         <?php
         if ($result_preguntas->num_rows > 0) {
             while($row = $result_preguntas->fetch_assoc()) {
@@ -115,17 +107,19 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
                 echo "<td>" . $row["pregunta"] . "</td>";
                 echo "<td>" . $row["descripcion"] . "</td>";
                 echo "<td>" . $row["pistas"] . "</td>";
+                //echo "<td><a href='editar_preguntas.php?id=" . $row["id"] . "'>Editar</a></td>";
                 echo "</tr>";
             }
         } else {
             echo "<tr><td colspan='5'>No hay preguntas almacenadas.</td></tr>";
         }
         ?>
+    </tbody>    
     </table>
     <br><br><br>
         <!-- Botón para crear una nueva pregunta -->
-    <a href="crear_preguntaDocente.php"><button>Crear Pregunta</button></a>
-    <button onclick="eliminarPregunta()">Eliminar Pregunta</button>
+    <a href="crear_preguntaDocente.php" class="boton">Crear Pregunta</a>
+    <button onclick="eliminarPregunta()"class="boton">Eliminar Pregunta</button>
     <script>
         // Función para abrir una ventana emergente y crear una nueva categoría
         function eliminarPregunta() {
@@ -148,11 +142,12 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
     </script>
 
         <br><br><br>
-  
+    </main>
+    </div>
 </body>
 <footer>
     <br><br><br>
-<a href="inicioDocente.php"><button>Ir a Inicio</button></a>
+<a href="inicioDocente.php" class="boton">Ir a Inicio</a>
 </footer>
 </html>
 

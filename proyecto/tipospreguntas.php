@@ -27,11 +27,16 @@ $result = $conn->query($sql);
     <title>Gestión de Dificultades</title>
     <link rel="stylesheet" href="css\estilogeneral.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <h2>Tipos de preguntas</h2>
+    
     
 </head>
 <body>
-    
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>CJCAGPEX</h1>
+    </header>
+    <h2>Tipos de preguntas</h2>
+    <main class="area-trabajo">
     <table border="1">
         <tr>
             <th>Id</th>
@@ -68,8 +73,8 @@ $result = $conn->query($sql);
     </table>
     <br><br><br>
     <!-- Botones para crear y eliminar categorías -->
-    <button onclick="crearTipo()">Crear Tipo Pregunta</button>
-    <button onclick="eliminarTipo()">Eliminar Tipo Pregunta</button>
+    <button onclick="crearTipo()" class="boton">Crear Tipo Pregunta</button>
+    <button onclick="eliminarTipo()" class="boton">Eliminar Tipo Pregunta</button>
     <br><br><br>
 
       
@@ -122,9 +127,11 @@ $result = $conn->query($sql);
     </script>
     
     <br><br><br>
+    </main>
+    </div>
 </body>
 <footer>
-<a href="inicio.php"><button>Ir a Inicio</button></a>
+<a href="inicio.php" class="boton">Ir a Inicio</a>
 </footer>
 </html>
 

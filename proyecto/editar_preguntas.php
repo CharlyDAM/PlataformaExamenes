@@ -44,21 +44,21 @@ if(isset($_GET['id'])) {
     
     <form action="editar_preguntas.php" method="POST">
         <label>ID:</label>
-        <input type="text" name="categoria_id" value="<?php echo $categoria['id']; ?>"> <br>
+        <input type="text" name="id" value="<?php echo $categoria['id']; ?>"> <br>
         <label>Categoria:</label>
-        <input type="text" name="Categoria" value="<?php echo $categoria['categoria']; ?>"><br>
+        <input type="text" name="categoria" value="<?php echo $categoria['categoria']; ?>"><br>
         <label>Subcategoria:</label>
         <input type="text" name="subcategoria" value="<?php echo $categoria['subcategoria']; ?>"><br>
         <label>Dificultad:</label>
-        <input type="text" name="Dificultad" value="<?php echo $categoria['dificultad']; ?>"><br>
+        <input type="text" name="dificultad" value="<?php echo $categoria['dificultad']; ?>"><br>
         <label>Tipo de pregunta:</label>
-        <input type="text" name="Tipo" value="<?php echo $categoria['tipo_pregunta']; ?>"><br>
+        <input type="text" name="tipo" value="<?php echo $categoria['tipo_pregunta']; ?>"><br>
         <label>Pregunta:</label>
-        <textarea name="Pregunta" value="<?php echo $categoria['pregunta']; ?>"></textarea><br>
+        <textarea name="pregunta" value="<?php echo $categoria['pregunta']; ?>"></textarea><br>
         <label>Descripcion:</label>
-        <textarea type="text" name="Descripcion" value="<?php echo $categoria['descripcion']; ?>"></textarea><br>
+        <textarea type="text" name="descripcion" value="<?php echo $categoria['descripcion']; ?>"></textarea><br>
         <label>Pistas:</label>
-        <textarea type="text" name="Pista" value="<?php echo $categoria['pistas']; ?>"></textarea><br>
+        <textarea type="text" name="pista" value="<?php echo $categoria['pistas']; ?>"></textarea><br>
         <input type="submit" name="submit" value="Modificar">
     </form>
     <br><br><br>
@@ -82,16 +82,19 @@ if(isset($_POST['submit'])) {
     $categoria_nombre = $_POST['categoria'];
     $subcategoria_nombre = $_POST['subcategoria'];
     $dificultad = $_POST['dificultad'];
-    $tipos_nombre = $_POST['tipo_pregunta'];
+    $tipos_nombre = $_POST['tipo'];
     $nueva_pregunta = $_POST['pregunta'];
     $nueva_descripcion = $_POST['descripcion'];
-    $nueva_pista = $_POST['pistas'];
+    $nueva_pista = $_POST['pista'];
     
     // Actualizar la categoría en la base de datos
-    $sql = "UPDATE preguntas SET pregunta = '$nueva_pregunta', descripcion = '$nueva_descripcion', pistas = '$nuevas_pistas', tipo_pregunta = '$tipos_nombre', dificultad = '$dificultad', subcategoria = '$subcategoria_nombre', categoria = '$categoria_nombre' WHERE id = $pregunta_id";
-
-      
-
+    $sql = "UPDATE preguntas SET pregunta = $nueva_pregunta WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET descripcion = $nueva_descripcion WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET pista = $nueva_pista WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET tipo_pregunta = $tipos_nombre WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET dificultad = $dificultad WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET subcategoria = $subcategoria_nombre WHERE id = $pregunta_id";
+    $sql = "UPDATE preguntas SET categoria = $categoria_nombre WHERE id = $pregunta_id";
 
     if($conn->query($sql) === TRUE) {
         // Redirigir de vuelta a categorias.php después de la edición
