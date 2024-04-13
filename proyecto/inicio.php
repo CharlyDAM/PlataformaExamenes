@@ -9,7 +9,7 @@
 <body>
 <div class="contenedor">
     <header class="cabecera">
-        <h1>CJCAGPEX</h1>
+        <h1>CJC.A.G.P.EX</h1>
     </header>
     <main class="area-trabajo">
     <div class="form-group">
@@ -30,6 +30,8 @@
 <footer>
 <div class="botones">
 <a href="cerrar_sesion.php" class="pie">Cerrar sesión</a>
+<a href="BaseDatos.html" class="pie">Base datos</a>
+
 </div>
 </footer>
 </html>
