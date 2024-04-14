@@ -8,7 +8,7 @@ CREATE TABLE Subcategorias (
     nombre VARCHAR(100) NOT NULL,
     categoria_id INT NOT NULL,
     
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE CASCADE
+    FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE RESTRICT
 );
 
 
@@ -31,10 +31,10 @@ CREATE TABLE Preguntas (
     pregunta TEXT NOT NULL,
     descripcion TEXT,
     pistas TEXT,
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE CASCADE,
-	FOREIGN KEY (subcategoria_id) REFERENCES subcategorias(id) ON DELETE CASCADE,
-    FOREIGN KEY (dificultad_id) REFERENCES Dificultades(id) ON DELETE CASCADE,
-    FOREIGN KEY (tipo_pregunta_id) REFERENCES TiposPreguntas(id) ON DELETE CASCADE
+    FOREIGN KEY (categoria_id) REFERENCES Categorias(id) ON DELETE RESTRICT,
+	FOREIGN KEY (subcategoria_id) REFERENCES subcategorias(id) ON DELETE RESTRICT,
+    FOREIGN KEY (dificultad_id) REFERENCES Dificultades(id) ON DELETE RESTRICT,
+    FOREIGN KEY (tipo_pregunta_id) REFERENCES TiposPreguntas(id) ON DELETE RESTRICT
 );
 
 
