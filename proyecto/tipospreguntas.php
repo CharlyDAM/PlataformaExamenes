@@ -1,4 +1,15 @@
 <?php
+// Verificar la sesión antes de mostrar la página
+session_start();
+
+// Verificar si la sesión está establecida para el usuario
+if (!isset($_SESSION['tipo_permiso'])) {
+    // Si no hay sesión, redirige a la página de inicio de sesión
+    header("Location: index.php");
+    exit();
+}
+?>
+<?php
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
