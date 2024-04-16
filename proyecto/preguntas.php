@@ -92,6 +92,7 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
             <th>Pregunta</th>
             <th>Descripción</th>
             <th>Pistas</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -107,7 +108,7 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
                 echo "<td>" . $row["pregunta"] . "</td>";
                 echo "<td>" . $row["descripcion"] . "</td>";
                 echo "<td>" . $row["pistas"] . "</td>";
-                //echo "<td><a href='editar_preguntas.php?id=" . $row["id"] . "'>Editar</a></td>";
+               // echo "<td><a href='editar_preguntas.php?id=" . $row["id"] . "'>Editar</a></td>";
                 echo "</tr>";
             }
         } else {

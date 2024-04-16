@@ -37,7 +37,7 @@ if(isset($_GET['id'])) {
 <body>
 <div class="contenedor">
     <header class="cabecera">
-        <h1>CJCAGPEX</h1>
+        <h1>CJC.A.G.P.EX</h1>
     </header>
     <h2>Editar Dificultades</h2>
     <main class="area-trabajo"> 

@@ -16,9 +16,9 @@ if(isset($_POST['id'])) {
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
-
+    
     // Verificar si hay preguntas asociadas a esta categoría
-    $sql_check_questions = "SELECT COUNT(*) AS total FROM preguntas WHERE id_categoria = $id";
+    $sql_check_questions = "SELECT COUNT(*) AS total FROM preguntas WHERE categoria_id = $id";
     $result_check_questions = $conn->query($sql_check_questions);
 
     if ($result_check_questions === FALSE) {
@@ -38,7 +38,7 @@ if(isset($_POST['id'])) {
         
         exit();
     }
-
+    
     // Preparar la consulta SQL para eliminar la categoría
     $sql = "DELETE FROM categorias WHERE id = $id";
 

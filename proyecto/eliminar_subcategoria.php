@@ -16,6 +16,27 @@ if(isset($_POST['id'])) {
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
+     // Verificar si hay preguntas asociadas a esta categoría
+     $sql_check_questions = "SELECT COUNT(*) AS total FROM preguntas WHERE subcategoria_id = $id";
+     $result_check_questions = $conn->query($sql_check_questions);
+ 
+     if ($result_check_questions === FALSE) {
+         // Enviar una respuesta al cliente indicando que ocurrió un error al verificar las preguntas asociadas
+         echo json_encode(array('success' => false, 'error' => 'Error al verificar las preguntas asociadas.'));
+ 
+         exit();
+     }
+ 
+     $row = $result_check_questions->fetch_assoc();
+     $total_questions = $row['total'];
+ 
+     if ($total_questions > 0) {
+         // Enviar una respuesta al cliente indicando que no se puede eliminar la categoría debido a preguntas asociadas
+         alert("No se puede eliminar la subcategoría porque tiene preguntas asociadas.");
+         echo json_encode(array('success' => false, 'error' => 'No se puede eliminar la categoría porque tiene preguntas asociadas.'));
+         
+         exit();
+     }
 
     // Preparar la consulta SQL para eliminar la categoría
     $sql = "DELETE FROM subcategorias WHERE id = $id";

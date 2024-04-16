@@ -29,5 +29,11 @@
     </div>
     </main>
 </div>
+<?php
+// Mostrar un mensaje de error si las credenciales son incorrectas
+if(isset($_GET['error']) && $_GET['error'] === 'incorrect_credentials') {
+    echo '<p style="color: red;">Nombre de usuario o contraseña incorrectos.</p>';
+}
+?>
 </body>
 </html>

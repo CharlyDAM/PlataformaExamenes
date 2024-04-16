@@ -1,3 +1,14 @@
+<?php
+// Verificar la sesión antes de mostrar la página
+session_start();
+
+// Verificar si la sesión está establecida para el usuario
+if (!isset($_SESSION['tipo_permiso'])) {
+    // Si no hay sesión, redirige a la página de inicio de sesión
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +18,7 @@
     <link rel="stylesheet" href="css\estilogeneral.css">
 </head>
 <body>
+    
 <div class="contenedor">
     <header class="cabecera">
         <h1>CJC.A.G.P.EX</h1>
