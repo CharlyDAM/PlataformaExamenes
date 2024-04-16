@@ -1,4 +1,15 @@
 <?php
+// Verificar la sesión antes de mostrar la página
+session_start();
+
+// Verificar si la sesión está establecida para el usuario
+if (!isset($_SESSION['tipo_permiso'])) {
+    // Si no hay sesión, redirige a la página de inicio de sesión
+    header("Location: index.php");
+    exit();
+}
+?>
+<?php
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
@@ -54,11 +65,6 @@ if(isset($_GET['id'])) {
         <label>Tipo de pregunta:</label>
         <input type="text" name="tipo" value="<?php echo $categoria['tipo_pregunta']; ?>"><br>
         <label>Pregunta:</label>
-        <textarea name="pregunta" value="<?php echo $categoria['pregunta']; ?>"></textarea><br>
-        <label>Descripcion:</label>
-        <textarea type="text" name="descripcion" value="<?php echo $categoria['descripcion']; ?>"></textarea><br>
-        <label>Pistas:</label>
-        <textarea type="text" name="pista" value="<?php echo $categoria['pistas']; ?>"></textarea><br>
         <input type="submit" name="submit" value="Modificar">
     </form>
     <br><br><br>
@@ -83,14 +89,10 @@ if(isset($_POST['submit'])) {
     $subcategoria_nombre = $_POST['subcategoria'];
     $dificultad = $_POST['dificultad'];
     $tipos_nombre = $_POST['tipo'];
-    $nueva_pregunta = $_POST['pregunta'];
-    $nueva_descripcion = $_POST['descripcion'];
-    $nueva_pista = $_POST['pista'];
+    
     
     // Actualizar la categoría en la base de datos
-    $sql = "UPDATE preguntas SET pregunta = $nueva_pregunta WHERE id = $pregunta_id";
-    $sql = "UPDATE preguntas SET descripcion = $nueva_descripcion WHERE id = $pregunta_id";
-    $sql = "UPDATE preguntas SET pista = $nueva_pista WHERE id = $pregunta_id";
+
     $sql = "UPDATE preguntas SET tipo_pregunta = $tipos_nombre WHERE id = $pregunta_id";
     $sql = "UPDATE preguntas SET dificultad = $dificultad WHERE id = $pregunta_id";
     $sql = "UPDATE preguntas SET subcategoria = $subcategoria_nombre WHERE id = $pregunta_id";

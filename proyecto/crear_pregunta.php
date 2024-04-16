@@ -46,7 +46,7 @@ $result_tipos_pregunta = $conn->query($sql_tipos_pregunta);
     <h2>Crear Nueva Pregunta</h2>
     <main class="area-trabajo"> 
     
-    <form action="guardar_preguntaDocente.php" method="post">
+    <form action="guardar_pregunta.php" method="post">
         <label for="categoria">Categoría:</label>
         <select id="categoria" name="categoria">
             <?php

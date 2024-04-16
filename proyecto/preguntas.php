@@ -95,6 +95,7 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
     <table class="tabla-preguntas">
     <thead>
         <tr>
+            
             <th>ID Pregunta</th>
             <th>Categoría</th>
             <th>Subcategoría</th>
@@ -103,7 +104,6 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
             <th>Pregunta</th>
             <th>Descripción</th>
             <th>Pistas</th>
-            
         </tr>
     </thead>
     <tbody>
@@ -111,6 +111,7 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
         if ($result_preguntas->num_rows > 0) {
             while($row = $result_preguntas->fetch_assoc()) {
                 echo "<tr>";
+                //echo "<td><a href='editar_preguntas.php?id=" . $row["id"] . "'>Editar</a></td>";
                 echo "<td>" . $row["id"] . "</td>";
                 echo "<td>" . $row["categoria"] . "</td>";
                 echo "<td>" . $row["subcategoria"] . "</td>";
@@ -119,7 +120,7 @@ $sql_preguntas = "SELECT preguntas.id, preguntas.pregunta, preguntas.descripcion
                 echo "<td>" . $row["pregunta"] . "</td>";
                 echo "<td>" . $row["descripcion"] . "</td>";
                 echo "<td>" . $row["pistas"] . "</td>";
-               // echo "<td><a href='editar_preguntas.php?id=" . $row["id"] . "'>Editar</a></td>";
+               
                 echo "</tr>";
             }
         } else {
